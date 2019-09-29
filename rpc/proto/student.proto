@@ -1,0 +1,29 @@
+syntax = "proto3";
+
+package proto;
+
+message studentUserRequest {
+    //用户id
+    int64 id = 1;
+}
+
+message studentUserResponse {
+    //用户id
+    int64 id = 1;
+    //用户名字
+    string name = 2;
+    //用户年龄
+    int32 ago = 3;
+    //用户性别
+    int32 sex = 4;
+}
+
+message Response {
+    int32 code = 1;            // 返回码
+    repeated studentUserResponse messgae = 2;     // 返回信息
+};
+
+service StudentInfo {
+    rpc GetStudentInfo (studentUserRequest) returns (studentUserResponse) {}
+}
+
