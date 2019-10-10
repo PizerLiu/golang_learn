@@ -9,8 +9,8 @@ import (
 )
 
 // todo
-//  1.日志写入elasticSearch+kibana
-//  2.rpc注册服务要推给etcd或者zk，client去注册中心拿
+//  1.api日志写入elasticSearch+kibana
+//  2.rpc注册服务要推给etcd或者zk，client去注册中心拿；grpc-proxy可以同时访问多个etcd服务器
 //  3.优化api加载路由和rpc加载service，现在太机械
 //  4.core组件添加【kafka】【redis】
 //  5.gev reactor模式tcp网络库
@@ -32,13 +32,13 @@ func init() {
 }
 
 func main() {
-
 	//启动api server服务
 	fmt.Println("启动api server服务")
 	go api.Run()
 	//启动rpc server服务
 	//这里可以再做一步：目录中proto文件自动生成pb.go文件
 	fmt.Println("启动rpc server服务")
-	rpc.Run()
+	go rpc.Run()
 
+	select {}
 }

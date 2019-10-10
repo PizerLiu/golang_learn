@@ -7,12 +7,6 @@ import (
 	"pizer_project/globle/vo"
 )
 
-func checkErr(err error) {
-	if err != nil {
-		log.Fatal(err)
-	}
-}
-
 // todo
 //  1.数据库回滚、事务加上
 //  2.insert、update、delete成功返回true，失败返回false
@@ -23,17 +17,25 @@ func (m StudentDao) AddStudentDao(student vo.Student) int64 {
 	db := core.GetDb()
 	//事务
 	tx, err := db.Begin()
-	checkErr(err)
+	if err != nil {
+		log.Fatal(err)
+	}
 	defer tx.Commit()
 
 	stmt1, err := tx.Prepare("insert student set name =?,ago=?,sex=?")
 	defer stmt1.Close()
-	checkErr(err)
+	if err != nil {
+		log.Fatal(err)
+	}
 
 	result, err := stmt1.Exec(&student.Name, &student.Ago, &student.Sex)
-	checkErr(err)
+	if err != nil {
+		log.Fatal(err)
+	}
 	id, err := result.LastInsertId()
-	checkErr(err)
+	if err != nil {
+		log.Fatal(err)
+	}
 
 	return id
 }

@@ -34,7 +34,7 @@ func main() {
 	result, err := c.GetStudentInfo(
 		context.Background(),
 		&pb.StudentUserRequest{
-			Id: 26,
+			Id: 260,
 		})
 	if err != nil {
 		fmt.Println("请求失败!!!", err)

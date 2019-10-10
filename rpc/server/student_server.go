@@ -15,5 +15,5 @@ type StudentInfoServer struct{}
 func (StudentInfoServer) GetStudentInfo(ctx context.Context, in *pb.StudentUserRequest) (*pb.StudentUserResponse, error) {
 	//去service业务层拿结果，然后用pb返回
 	student := studentService.GetStudentById(in.Id)
-	return &pb.StudentUserResponse{student.Id, student.Name, student.Ago, student.Sex}, nil
+	return &pb.StudentUserResponse{Id: student.Id, Name: student.Name, Ago: student.Ago, Sex: student.Sex}, nil
 }

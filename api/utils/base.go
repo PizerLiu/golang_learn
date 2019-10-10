@@ -11,7 +11,7 @@ func init() {
 	//govalidator.SetFieldsRequiredByDefault(true)
 }
 
-//check params
+// check params
 // example : checkParam(c, &studentInfo)
 func CheckParam(c *gin.Context, param interface{}) bool {
 	err := c.BindJSON(&param)
