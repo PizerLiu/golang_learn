@@ -4,6 +4,8 @@ import (
 	"context"
 	"fmt"
 	"google.golang.org/grpc"
+	"pizer_project/conf"
+	"pizer_project/core"
 
 	pb "pizer_project/rpc/proto"
 )
@@ -17,7 +19,20 @@ const address = "127.0.0.1:9192"
   3. 向grpc服务端发起请求
   4. 获取grpc服务端返回的结果
 */
+
+func init() {
+	//初始化参数配置，dev、online
+	fmt.Println("加载配置参数")
+	conf.Run()
+	//启动core组件
+	fmt.Println("加载core组件")
+	core.Run()
+}
+
 func main() {
+	etcds := core.GetEtcdExecute()
+	sre := etcds.GetServerRegisterByName("StudentInfoServer")
+	fmt.Println(sre)
 
 	// 创建一个grpc连接器
 	conn, err := grpc.Dial(address, grpc.WithInsecure())
@@ -34,12 +49,12 @@ func main() {
 	result, err := c.GetStudentInfo(
 		context.Background(),
 		&pb.StudentUserRequest{
-			Id: 260,
+			Id: 40,
 		})
 	if err != nil {
 		fmt.Println("请求失败!!!", err)
 		return
 	}
 	// 获取服务端返回的结果
-	fmt.Println(result)
+	fmt.Println(result.Name)
 }

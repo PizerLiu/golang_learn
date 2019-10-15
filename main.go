@@ -18,6 +18,8 @@ import (
 //  7.将api的handle与rpc使用service统一为一个方法
 //  8.main方法后阻塞，api rpc线程同时启动
 //  9.配置文件热加载，动态读取更改的配置
+//  10.core中如果加载失败的处理
+//  11.当对err处理的时候，存储err，并且根据情况做三种操作【程序退出、rpc返回、restful返回】
 
 // done
 //  1.api参数必须校验

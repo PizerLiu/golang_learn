@@ -1,6 +1,7 @@
 package service
 
 import (
+	"pizer_project/core"
 	"pizer_project/dao"
 	"pizer_project/globle/vo"
 )
@@ -8,10 +9,13 @@ import (
 // 定义dao名
 var studentDao dao.StudentDao
 
-// 定义struct实现我们自定义的helloworld.proto对应的服务
 type StudentService struct{}
 
 func (m StudentService) AddStudent(student vo.Student) int64 {
+	//es中添加数据
+	es := core.GetEsExecute()
+	es.AddSourceByIndex("pizer", `{"age":"20"}`)
+
 	return studentDao.AddStudentDao(student)
 }
 

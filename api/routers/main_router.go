@@ -95,6 +95,7 @@ func InitRun() {
 	}
 
 	//service run
+	fmt.Println("api 服务启动...")
 	if apiTls == "true" {
 		engine.RunTLS(apiTlsAddr, "keys/server.crt", "keys/server.key")
 	} else {

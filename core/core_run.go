@@ -6,14 +6,16 @@ import (
 
 //输出外部要加载的参数
 var (
-	db  *sql.DB
-	exe EsExecute
+	db   *sql.DB
+	es   EsExecute
+	etcd *EtcdExecute
 )
 
 func Run() {
 	//这个可以设置加载哪些core组件
 	db = dbInit()
-	//exe = esInit()
+	es = esInit()
+	etcd = etcdInit()
 }
 
 func exit() {
@@ -26,5 +28,9 @@ func GetDb() *sql.DB {
 }
 
 func GetEsExecute() EsExecute {
-	return exe
+	return es
+}
+
+func GetEtcdExecute() *EtcdExecute {
+	return etcd
 }

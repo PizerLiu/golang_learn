@@ -18,7 +18,7 @@ func Config(env string, app string) *utils.CfgFileConfig {
 	var configFile string
 	filePath := utils.CurrentFile()
 	configFile = filePath + "/" + app + "/conf_" + app + "_" + env + ".cfg"
-	fmt.Println("configFile===", configFile)
+	fmt.Println("配置文件:", configFile)
 	//加载配置文件
 	fileConf, _ := utils.InitConfig(configFile)
 	//如果加载出错，报出app  env参数

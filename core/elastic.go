@@ -71,6 +71,6 @@ func esInit() EsExecute {
 }
 
 // 测试ES
-func main() {
-	esInit().AddSourceByIndex("pizer", `{"age":"19"}`)
-}
+//func main() {
+//	esInit().AddSourceByIndex("pizer", `{"age":"19"}`)
+//}
